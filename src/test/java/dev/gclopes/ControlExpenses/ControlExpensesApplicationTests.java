@@ -8,6 +8,7 @@ class ControlExpensesApplicationTests {
 
 	@Test
 	void contextLoads() {
+		//TODO: Create code to teste context loader.
 	}
 
 }
