@@ -1,13 +1,17 @@
-package dev.gclopes.ControlExpenses.Model;
+package dev.gclopes.ControlExpenses.model;
+
+import lombok.Getter;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Objects;
 
+@Getter
 public class BaseEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    public long id;
+    public Long id;
 
     @Override
     public boolean equals(Object o) {
@@ -16,7 +20,7 @@ public class BaseEntity {
 
         BaseEntity that = (BaseEntity) o;
 
-        return id == that.id;
+        return Objects.equals(id, that.id);
     }
 
     @Override
