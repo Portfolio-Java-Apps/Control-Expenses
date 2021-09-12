@@ -1,12 +1,13 @@
 package dev.gclopes.ControlExpenses.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Objects;
-
+@NoArgsConstructor
 @Getter
 public class BaseEntity {
     @Id
@@ -25,7 +26,7 @@ public class BaseEntity {
 
     @Override
     public int hashCode() {
-        return (int) (id ^ (id >>> 32));
+        return id != null ? id.hashCode() : 0;
     }
 
 }

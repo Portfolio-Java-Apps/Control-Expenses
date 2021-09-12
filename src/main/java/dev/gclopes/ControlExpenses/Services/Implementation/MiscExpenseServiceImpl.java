@@ -15,7 +15,7 @@ public class MiscExpenseServiceImpl implements MiscExpenseService {
     }
     @Override
     public MiscExpense findByDesc(String desc) {
-        return miscExpenseRepository.findByDesc(desc);
+        return miscExpenseRepository.findByDesc(desc).orElse(null);
     }
 
     @Override

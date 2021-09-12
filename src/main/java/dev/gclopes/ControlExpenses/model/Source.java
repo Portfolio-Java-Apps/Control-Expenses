@@ -12,10 +12,14 @@ import java.util.Set;
 @ToString
 public class Source extends BaseEntity {
     private String desc;
-
     @OneToMany(mappedBy = "source", cascade = CascadeType.ALL)
     @ToString.Exclude
     private Set <Movement> movements;
+
+
+    public Source(String desc) {
+        this.desc = desc;
+    }
 
     public void setMovements(Set<Movement> movements) {
         this.movements = movements;
@@ -24,6 +28,4 @@ public class Source extends BaseEntity {
     public Set<Movement> getMovements() {
         return movements;
     }
-
-
 }
