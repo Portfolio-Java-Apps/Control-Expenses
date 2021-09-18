@@ -4,7 +4,6 @@ import dev.gclopes.ControlExpenses.enumType.Type;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Currency;
 import java.util.Date;
 import java.util.List;
 
@@ -28,9 +27,11 @@ public class Movement extends BaseEntity{
     private Date date;
 
     @Column(name="TotalAmount")
-    private Currency totalAmount;
+    private Double totalAmount;
     @Column(name="Discount")
-    private Currency discount;
+    private Double discount;
+
+
 
     @ManyToOne
     @JoinColumn(name = "TypeOfPayment")
