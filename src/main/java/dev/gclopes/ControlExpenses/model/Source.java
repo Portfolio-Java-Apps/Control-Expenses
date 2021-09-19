@@ -5,16 +5,24 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Set;
 
-@Entity
+@Entity(name="Source")
+@Table(name="Source")
 @ToString
 @Getter
 @Setter
 public class Source extends BaseEntity {
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Override
+    public Long getId() {
+        return super.getId();
+    }
+    public void SetId(Long id){
+        this.setId(id);
+    }
     private String desc;
     @OneToMany(mappedBy = "source", cascade = CascadeType.ALL)
     @ToString.Exclude

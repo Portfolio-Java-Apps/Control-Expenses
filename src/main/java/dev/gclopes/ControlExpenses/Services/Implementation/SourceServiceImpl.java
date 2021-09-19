@@ -3,11 +3,10 @@ package dev.gclopes.ControlExpenses.Services.Implementation;
 import dev.gclopes.ControlExpenses.Services.SourceService;
 import dev.gclopes.ControlExpenses.model.Source;
 import dev.gclopes.ControlExpenses.repositories.SourceRepository;
-import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
-@Service
+
 public class SourceServiceImpl implements SourceService {
     private final SourceRepository sourceRepository;
 

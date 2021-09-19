@@ -3,16 +3,11 @@ package dev.gclopes.ControlExpenses.model;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.NaturalIdCache;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity(name = "PersonalGoods")
 @Table(name = "PersonalGoods")
@@ -22,14 +17,21 @@ import java.util.Objects;
 )
 @NoArgsConstructor
 public class PersonalGoods extends BaseEntity{
-    @NaturalId
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Override
+    public Long getId() {
+        return super.getId();
+    }
+    public void SetId(Long id){
+        this.setId(id);
+    }
     private String desc;
 
     @OneToMany(
-            mappedBy = "personalGoods",
-            cascade = CascadeType.ALL
+            mappedBy = "personalGoods"
     )
-    private List<MovPersonalGoods> movPersonalGoods = new ArrayList<>();
+    private Set<MovPersonalGoods> movPersonalGoods;
 
     public PersonalGoods(String desc) {
         this.desc = desc;

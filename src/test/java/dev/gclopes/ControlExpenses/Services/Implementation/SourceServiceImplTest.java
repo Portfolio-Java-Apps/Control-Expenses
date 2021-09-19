@@ -8,11 +8,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.*;
 
+import static java.lang.Math.random;
+import static java.lang.Math.round;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.*;
@@ -39,31 +40,30 @@ class SourceServiceImplTest {
         long sourceId=0;
         for(String s : ArrStrDesc)
         {
-
            Source source = new Source(++sourceId, s);
            sources.add(source);
         }
 
         rand=new Random();
-        id = (long) (Math.random() * ((long) sources.size() -1) + 1);
+        id = (long) (random() * ((long) sources.size() -1) + 1);
         source = sources.stream().filter(x-> Objects.equals(x.id, id)).findFirst().orElse(null);
 
     }
 
     @Test
     void findAll() {
-        Mockito.when(sourceRepository.findAll()).thenReturn(sources);
+        when(sourceRepository.findAll()).thenReturn(sources);
         assertNotNull(sourceService.findAll());
-        Mockito.verify(sourceRepository, times(1)).findAll();
+        verify(sourceRepository, times(1)).findAll();
     }
 
     @Test
     void findById() {
-        Mockito.when(sourceRepository.findById(id)).thenReturn(source!=null ? Optional.of(source) : Optional.empty());
+        when(sourceRepository.findById(id)).thenReturn(source!=null ? Optional.of(source) : Optional.empty());
         assertNotNull(sourceService.findById(id));
-        Mockito.when(sourceRepository.findById(id)).thenReturn(Optional.empty());
+        when(sourceRepository.findById(id)).thenReturn(Optional.empty());
         assertNull(sourceService.findById(id));
-        Mockito.verify(sourceRepository, times(2)).findById(id);
+        verify(sourceRepository, times(2)).findById(id);
     }
 
     @Test
@@ -73,10 +73,11 @@ class SourceServiceImplTest {
         Set<Movement> movements = new HashSet<>();
         for(int i=0; i<5; i++)
         {
-            Double TotalAmount = (double) rand.nextInt(100) + rand.nextDouble();
+
+            Double TotalAmount = (double) round((rand.nextInt(100) + rand.nextDouble()) *100)/100;
             double TotalDiscount = 0.00;
             if(rand.nextBoolean())
-                TotalDiscount = (double) rand.nextInt(10) + rand.nextDouble();
+                TotalDiscount = (double) round((rand.nextInt(10) + rand.nextDouble()) *100)/100;
             Movement movement = Movement
                     .builder()
                     .type(Type.DEBT)
@@ -86,6 +87,7 @@ class SourceServiceImplTest {
                     .totalAmount(TotalAmount)
                     .build();
             movement.setId((long) i+1);
+            System.out.println(movement);
             movements.add(movement);
         }
         source.setMovements(movements);
