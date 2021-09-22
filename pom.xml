@@ -66,11 +66,7 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>5.4.27.Final</version>
 		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-			<version>5.4.27.Final</version>
-		</dependency>
+
 
 		<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
 		<dependency>

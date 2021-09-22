@@ -3,7 +3,6 @@ package dev.gclopes.ControlExpenses.model;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
@@ -12,11 +11,25 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class MovPersonalGoodsID implements Serializable {
 
-    @Column(name = "Movement_id")
-    Long movementId;
+    private Long movementId;
+    private Long personalGoodId;
 
-    @Column(name = "PersonalGood_id")
-    Long personalGoodId;
+
+    public Long getMovementId() {
+        return movementId;
+    }
+
+    public void setMovementId(Long movementId) {
+        this.movementId = movementId;
+    }
+
+    public Long getPersonalGoodId() {
+        return personalGoodId;
+    }
+
+    public void setPersonalGoodId(Long personalGoodId) {
+        this.personalGoodId = personalGoodId;
+    }
 
 
 }

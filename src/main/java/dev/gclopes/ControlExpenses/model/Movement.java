@@ -5,13 +5,12 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
 
-@Entity(name = "Post")
-@Table(name = "post")
+@Entity(name = "movement")
+@Table(name = "movement")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -30,8 +29,6 @@ public class Movement extends BaseEntity{
     @Column(name="Type")
     private Type type;
 
-    @ManyToOne
-    @JoinColumn(name = "source")
     private Source source;
 
     @Column(name="Date")
@@ -42,6 +39,48 @@ public class Movement extends BaseEntity{
     @Column(name="Discount")
     private Double discount;
 
+    @ManyToOne
+    @JoinColumn(name = "source")
+    public Source getSource() {
+        return source;
+    }
+
+    public void setSource(Source source) {
+        this.source = source;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(Double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public Double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Movement{");
@@ -49,37 +88,68 @@ public class Movement extends BaseEntity{
         sb.append("type=").append(type);
         if(source!=null){
             sb.append(", sourceId=").append(source.getId());
-            sb.append(", Source Desc=").append(source.getDesc());
+            sb.append(", Source Desc=").append(source.getName());
         }
         sb.append(", date=").append(formatter.format(date));
         sb.append(", totalAmount=").append(totalAmount);
         sb.append(", discount=").append(discount);
         if(typeOfPayment!=null) {
             sb.append(", Type of Payment Id=").append(typeOfPayment.getId());
-            sb.append(", Type of Payment=").append(typeOfPayment.getDesc());
+            sb.append(", Type of Payment=").append(typeOfPayment.getName());
         }
        /*
         sb.append(", typeOfPayment=").append(typeOfPayment);
         sb.append(", movMiscExpenses=").append(movMiscExpenses);
-        sb.append(", movPersonalGoods=").append(movPersonalGoods);*/
+        sb.append(", movPersonalGoods=").append(movPersonalGoods);
+        */
         sb.append('}');
         return sb.toString();
     }
 
-    @ManyToOne
-    @JoinColumn(name = "TypeOfPayment")
     private TypeOfPayment typeOfPayment;
 
+    @ManyToOne
+    @JoinColumn(name = "TypeOfPayment")
+    public TypeOfPayment getTypeOfPayment() {
+        return typeOfPayment;
+    }
+
+    public void setTypeOfPayment(TypeOfPayment typeOfPayment) {
+        this.typeOfPayment = typeOfPayment;
+    }
+
     @OneToMany(
             mappedBy = "movement",
-            cascade = CascadeType.ALL
+            fetch = FetchType.LAZY
     )
-    private Set<MovMiscExpense> movMiscExpenses;
+    @Column(name="mov_misc_expenses_id")
+    public Collection<MovMiscExpense> getMovMiscExpenses() {
+        return movMiscExpenses;
+    }
+
+    public void setMovMiscExpenses(Collection<MovMiscExpense> movMiscExpenses) {
+        this.movMiscExpenses = movMiscExpenses;
+    }
+
+    @OneToMany(
+            mappedBy = "movement",
+            fetch = FetchType.LAZY
+    )
+    @Column(name="mov_personal_goods_id")
+    public Collection<MovPersonalGoods> getMovPersonalGoods() {
+        return movPersonalGoods;
+    }
+
+    public void setMovPersonalGoods(Collection<MovPersonalGoods> movPersonalGoods) {
+        this.movPersonalGoods = movPersonalGoods;
+    }
+
+    private Collection<MovMiscExpense> movMiscExpenses;
 
     @OneToMany(
             mappedBy = "movement",
             cascade = CascadeType.ALL
     )
-    private List<MovPersonalGoods> movPersonalGoods;
+    private Collection<MovPersonalGoods> movPersonalGoods;
 
 }

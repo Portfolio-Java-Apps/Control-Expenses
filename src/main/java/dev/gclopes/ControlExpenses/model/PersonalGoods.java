@@ -6,8 +6,9 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.NaturalIdCache;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity(name = "PersonalGoods")
 @Table(name = "PersonalGoods")
@@ -26,15 +27,27 @@ public class PersonalGoods extends BaseEntity{
     public void SetId(Long id){
         this.setId(id);
     }
-    private String desc;
+
+    @Column(name="name")
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     @OneToMany(
-            mappedBy = "personalGoods"
+            mappedBy = "personalGoods",
+            fetch=FetchType.LAZY
     )
-    private Set<MovPersonalGoods> movPersonalGoods;
+    @Column(name="mov_personal_goods_id")
+    private Collection<MovPersonalGoods> movPersonalGoods = new ArrayList<>();
 
-    public PersonalGoods(String desc) {
-        this.desc = desc;
+    public PersonalGoods(String name) {
+        this.name = name;
     }
 
     @Override
@@ -42,12 +55,12 @@ public class PersonalGoods extends BaseEntity{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PersonalGoods personalGoods = (PersonalGoods) o;
-        return Objects.equals(desc, personalGoods.desc);
+        return Objects.equals(name, personalGoods.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(desc);
+        return Objects.hash(name);
     }
 
 }

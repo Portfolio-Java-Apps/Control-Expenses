@@ -1,36 +1,62 @@
 package dev.gclopes.ControlExpenses.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Currency;
 
 @Entity(name = "MovPersonalGoods")
 @Table(name = "MovPersonalGoods")
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 public class MovPersonalGoods {
     @EmbeddedId
-    private MovPersonalGoodsID id;
+    private MovPersonalGoodsID movPersonalGoodsID = new MovPersonalGoodsID();
 
     @ManyToOne
     @MapsId("movementId")
-    @JoinColumn(name = "Movement_id")
+    @JoinColumn(name = "movement_id")
     private Movement movement;
 
     @ManyToOne
-    @MapsId("personalGoodId")
-    @JoinColumn(name = "PersonalGood_id")
+    @MapsId("personalGoodsId")
+    @JoinColumn(name = "PersonalGoods_id")
     private PersonalGoods personalGoods;
 
-
     @Column(name = "Amount")
-    private Currency amount;
+    private Double amount;
+
+    public MovPersonalGoodsID getMovPersonalGoodsID() {
+        return movPersonalGoodsID;
+    }
+
+    public void setMovPersonalGoodsID(MovPersonalGoodsID movPersonalGoodsID) {
+        this.movPersonalGoodsID = movPersonalGoodsID;
+    }
+
+    public Movement getMovement() {
+        return movement;
+    }
+
+    public void setMovement(Movement movement) {
+        this.movement = movement;
+    }
+
+    public PersonalGoods getPersonalGoods() {
+        return personalGoods;
+    }
+
+    public void setPersonalGoods(PersonalGoods personalGoods) {
+        this.personalGoods = personalGoods;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
 
 
 

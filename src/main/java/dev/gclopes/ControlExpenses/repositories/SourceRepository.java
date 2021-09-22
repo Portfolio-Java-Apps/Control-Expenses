@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface SourceRepository extends CrudRepository<Source, Long> {
-    Optional<Source> findByDesc(String desc);
+    Optional<Source> findByName(String name);
 }

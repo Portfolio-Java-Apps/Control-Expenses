@@ -3,14 +3,13 @@ package dev.gclopes.ControlExpenses.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity(name="Source")
 @Table(name="Source")
-@ToString
+
 @Getter
 @Setter
 public class Source extends BaseEntity {
@@ -23,22 +22,33 @@ public class Source extends BaseEntity {
     public void SetId(Long id){
         this.setId(id);
     }
-    private String desc;
-    @OneToMany(mappedBy = "source", cascade = CascadeType.ALL)
-    @ToString.Exclude
-    private Set <Movement> movements;
 
-    public Source(long id, String desc) {
-        this.setId(id);
-        this.desc = desc;
+    @Column(name = "name")
+    private String name;
+
+    public String getName() {
+        return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    private Set <Movement> movements;
+
+    public Source(long id, String name) {
+        this.setId(id);
+        this.name = name;
+    }
+
+
+    @OneToMany(mappedBy = "source", cascade = CascadeType.ALL)
+    @Column(name="movement_id")
+    public Set<Movement> getMovements() {
+        return movements;
+    }
 
     public void setMovements(Set<Movement> movements) {
         this.movements = movements;
-    }
-
-    public Set<Movement> getMovements() {
-        return movements;
     }
 }

@@ -10,6 +10,7 @@ import java.util.Objects;
 @Setter
 public abstract class BaseEntity {
 
+
     public Long id;
 
     @Override

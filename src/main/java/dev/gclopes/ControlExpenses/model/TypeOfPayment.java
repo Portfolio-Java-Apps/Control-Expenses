@@ -3,7 +3,6 @@ package dev.gclopes.ControlExpenses.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -14,7 +13,6 @@ import java.util.Set;
 @Setter
 @Getter
 @NoArgsConstructor
-@ToString
 public class TypeOfPayment extends BaseEntity{
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -25,11 +23,28 @@ public class TypeOfPayment extends BaseEntity{
     public void SetId(Long id){
         this.setId(id);
     }
-    private String desc;
+
+    @Column(name="name")
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    private Set<Movement> movements = new HashSet<>();
 
     @OneToMany(mappedBy = "typeOfPayment", cascade = CascadeType.ALL)
-    @ToString.Exclude
-    Set<Movement> movements = new HashSet<>();
+    public Set<Movement> getMovements() {
+        return movements;
+    }
+
+    public void setMovements(Set<Movement> movements) {
+        this.movements = movements;
+    }
 
 
 }

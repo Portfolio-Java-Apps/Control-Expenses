@@ -3,7 +3,6 @@ package dev.gclopes.ControlExpenses.model;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
@@ -11,11 +10,23 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MovMiscExpenseID implements Serializable {
-    @Column(name = "Movement_id")
-    Long movementId;
-
-    @Column(name = "MiscExpense_id")
-    Long miscExpenseId;
+    private Long movementId;
+    private Long miscExpenseId;
 
 
+    public Long getMovementId() {
+        return movementId;
+    }
+
+    public void setMovementId(Long movementId) {
+        this.movementId = movementId;
+    }
+
+    public Long getMiscExpenseId() {
+        return miscExpenseId;
+    }
+
+    public void setMiscExpenseId(Long miscExpenseId) {
+        this.miscExpenseId = miscExpenseId;
+    }
 }

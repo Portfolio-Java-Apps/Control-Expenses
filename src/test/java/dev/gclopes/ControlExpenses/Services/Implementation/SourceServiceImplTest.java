@@ -111,10 +111,10 @@ class SourceServiceImplTest {
     @Test
     void findByDesc() {
         int id = rand.nextInt(sources.size())-1;
-        String strDesc =  ArrStrDesc[id];
-        Source mySource = sources.stream().filter(x-> Objects.equals(x.getDesc(),strDesc)).findFirst().orElse(null);
-        when(sourceRepository.findByDesc(strDesc)).thenReturn(Optional.ofNullable(mySource));
-        sourceService.findByDesc(strDesc);
-        verify(sourceRepository, times(1)).findByDesc(strDesc);
+        String strName =  ArrStrDesc[id];
+        Source mySource = sources.stream().filter(x-> Objects.equals(x.getName(),strName)).findFirst().orElse(null);
+        when(sourceRepository.findByName(strName)).thenReturn(Optional.ofNullable(mySource));
+        sourceService.findByDesc(strName);
+        verify(sourceRepository, times(1)).findByName(strName);
     }
 }

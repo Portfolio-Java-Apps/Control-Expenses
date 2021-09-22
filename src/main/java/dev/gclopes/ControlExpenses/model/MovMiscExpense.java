@@ -1,33 +1,64 @@
 package dev.gclopes.ControlExpenses.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Currency;
 
 @Entity(name = "MovMiscExpense")
 @Table(name = "MovMiscExpense")
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 public class MovMiscExpense {
     @EmbeddedId
-    private MovMiscExpenseID id;
+    private MovMiscExpenseID movMiscExpenseID = new MovMiscExpenseID();
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @MapsId("movementId")
+    @JoinColumn(name = "movement_id")
     private Movement movement;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @MapsId("miscExpenseId")
+    @JoinColumn(name = "miscExpense_id")
     private MiscExpense miscExpense;
 
 
     @Column(name = "Amount")
-    private Currency amount;
+    private Double amount;
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
+    public MovMiscExpenseID getMovMiscExpenseID() {
+        return movMiscExpenseID;
+    }
+
+    public void setMovMiscExpenseID(MovMiscExpenseID movMiscExpenseID) {
+        this.movMiscExpenseID = movMiscExpenseID;
+    }
+
+    public Movement getMovement() {
+        return movement;
+    }
+
+    public void setMovement(Movement movement) {
+        this.movement = movement;
+    }
+
+    public MiscExpense getMiscExpense() {
+        return miscExpense;
+    }
+
+    public void setMiscExpense(MiscExpense miscExpense) {
+        this.miscExpense = miscExpense;
+    }
+
+
 
 }
