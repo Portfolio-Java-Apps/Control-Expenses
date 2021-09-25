@@ -73,7 +73,6 @@ class SourceServiceImplTest {
         Set<Movement> movements = new HashSet<>();
         for(int i=0; i<5; i++)
         {
-
             Double TotalAmount = (double) round((rand.nextInt(100) + rand.nextDouble()) *100)/100;
             double TotalDiscount = 0.00;
             if(rand.nextBoolean())
@@ -109,7 +108,7 @@ class SourceServiceImplTest {
     }
 
     @Test
-    void findByDesc() {
+    void findByName() {
         int id = rand.nextInt(sources.size())-1;
         String strName =  ArrStrDesc[id];
         Source mySource = sources.stream().filter(x-> Objects.equals(x.getName(),strName)).findFirst().orElse(null);

@@ -8,13 +8,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 import static java.lang.Math.random;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -45,7 +43,13 @@ class MiscExpenseServiceImplTest {
     }
 
     @Test
-    void findByDesc() {
+    void findByName() {
+        int id = rand.nextInt(miscExpenses.size())-1;
+        String strName =  ArrStrDesc[id];
+        MiscExpense myMiscExpense = miscExpenses.stream().filter(x-> Objects.equals(x.getName(),strName)).findFirst().orElse(null);
+        when(miscExpenseRepository.findByName(strName)).thenReturn(Optional.ofNullable(myMiscExpense));
+        miscExpenseService.findByName(strName);
+        verify(miscExpenseRepository, times(1)).findByName(strName);
     }
 
     @Test
@@ -57,17 +61,31 @@ class MiscExpenseServiceImplTest {
 
     @Test
     void findById() {
+        when(miscExpenseRepository.findById(id)).thenReturn(miscExpense!=null ? Optional.of(miscExpense) : Optional.empty());
+        assertNotNull(miscExpenseService.findById(id));
+        when(miscExpenseRepository.findById(id)).thenReturn(Optional.empty());
+        assertNull(miscExpenseService.findById(id));
+        verify(miscExpenseRepository, times(2)).findById(id);
+
     }
 
     @Test
     void save() {
+        assertNotNull(miscExpense);
+        when(miscExpenseRepository.save(miscExpense)).thenReturn(miscExpense);
+        miscExpenseService.save(miscExpense);
+        verify(miscExpenseRepository, times(1)).save(miscExpense);
     }
 
     @Test
     void delete() {
+        miscExpenseService.delete(miscExpense);
+        verify(miscExpenseRepository, times(1)).delete(miscExpense);
     }
 
     @Test
     void deleteById() {
+        miscExpenseService.deleteById(id);
+        verify(miscExpenseRepository, times(1)).deleteById(id);
     }
 }
