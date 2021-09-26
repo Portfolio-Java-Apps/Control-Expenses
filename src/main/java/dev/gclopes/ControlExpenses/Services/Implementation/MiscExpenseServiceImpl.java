@@ -3,16 +3,21 @@ package dev.gclopes.ControlExpenses.Services.Implementation;
 import dev.gclopes.ControlExpenses.Services.MiscExpenseService;
 import dev.gclopes.ControlExpenses.model.MiscExpense;
 import dev.gclopes.ControlExpenses.repositories.MiscExpenseRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Service("MiscExpenseService")
 public class MiscExpenseServiceImpl implements MiscExpenseService {
-    MiscExpenseRepository miscExpenseRepository;
+
+    private final MiscExpenseRepository miscExpenseRepository;
 
     public MiscExpenseServiceImpl(MiscExpenseRepository miscExpenseRepository) {
         this.miscExpenseRepository = miscExpenseRepository;
     }
+
+
     @Override
     public MiscExpense findByName(String name) {
         return miscExpenseRepository.findByName(name).orElse(null);

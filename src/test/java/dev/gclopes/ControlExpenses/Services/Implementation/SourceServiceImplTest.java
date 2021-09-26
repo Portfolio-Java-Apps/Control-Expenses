@@ -109,11 +109,11 @@ class SourceServiceImplTest {
 
     @Test
     void findByName() {
-        int id = rand.nextInt(sources.size())-1;
+        int id = rand.nextInt(ArrStrDesc.length)-1;
         String strName =  ArrStrDesc[id];
         Source mySource = sources.stream().filter(x-> Objects.equals(x.getName(),strName)).findFirst().orElse(null);
         when(sourceRepository.findByName(strName)).thenReturn(Optional.ofNullable(mySource));
-        sourceService.findByDesc(strName);
+        sourceService.findByName(strName);
         verify(sourceRepository, times(1)).findByName(strName);
     }
 }

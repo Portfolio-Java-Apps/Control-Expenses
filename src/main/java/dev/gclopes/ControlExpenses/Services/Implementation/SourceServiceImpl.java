@@ -44,7 +44,7 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
-    public Source findByDesc(String name) {
+    public Source findByName(String name) {
         return sourceRepository.findByName(name).orElse(null);
     }
 }

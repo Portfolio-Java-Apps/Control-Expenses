@@ -18,6 +18,21 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/dev/gclopes/ControlExpenses/Config/CrudServiceConfiguration.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/dev/gclopes/ControlExpenses/Config/CrudServicesConfig.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/dev/gclopes/ControlExpenses/ControlExpensesApplication.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/dev/gclopes/ControlExpenses/Enum/Type.java">
           <value>
             <set />
@@ -129,6 +144,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/dev/gclopes/ControlExpenses/Services/Implementation/SourceServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/dev/gclopes/ControlExpenses/Services/Implementation/TypeOfPaymentServiceImpl.java">
           <value>
             <set />
           </value>

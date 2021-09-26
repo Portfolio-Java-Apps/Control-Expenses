@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface MiscExpenseRepository extends CrudRepository<MiscExpense, Long> {
     Optional<MiscExpense> findByName(String desc);
+
 }
