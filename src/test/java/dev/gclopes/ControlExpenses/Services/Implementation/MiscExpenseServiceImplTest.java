@@ -44,7 +44,7 @@ class MiscExpenseServiceImplTest {
 
     @Test
     void findByName() {
-        int id = rand.nextInt(miscExpenses.size())-1;
+        int id = rand.nextInt(miscExpenses.size());
         String strName =  ArrStrDesc[id];
         MiscExpense myMiscExpense = miscExpenses.stream().filter(x-> Objects.equals(x.getName(),strName)).findFirst().orElse(null);
         when(miscExpenseRepository.findByName(strName)).thenReturn(Optional.ofNullable(myMiscExpense));

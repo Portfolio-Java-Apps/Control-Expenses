@@ -46,7 +46,8 @@ public class PersonalGoods extends BaseEntity{
     @Column(name="mov_personal_goods_id")
     private Collection<MovPersonalGoods> movPersonalGoods = new ArrayList<>();
 
-    public PersonalGoods(String name) {
+    public PersonalGoods(Long id, String name) {
+        this.setId(id);
         this.name = name;
     }
 

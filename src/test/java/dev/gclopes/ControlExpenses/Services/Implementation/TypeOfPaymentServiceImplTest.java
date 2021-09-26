@@ -109,7 +109,7 @@ class TypeOfPaymentServiceImplTest {
 
     @Test
     void findByName() {
-        int id = rand.nextInt(ArrStrDesc.length)-1;
+        int id = rand.nextInt(ArrStrDesc.length);
         String strName =  ArrStrDesc[id];
         TypeOfPayment myTypeOfPayment = TypeOfPayments.stream().filter(x-> Objects.equals(x.getName(),strName)).findFirst().orElse(null);
         when(typeOfPaymentRepository.findByName(strName)).thenReturn(Optional.ofNullable(myTypeOfPayment));
