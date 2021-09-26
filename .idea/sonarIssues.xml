@@ -383,6 +383,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/dev/gclopes/ControlExpenses/Services/Implementation/TypeOfPaymentServiceImplTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../Training/Udemy/Springboot Guru/sfg-pet-clinic-Guru/pet-clinic-data/src/main/java/guru/springframework/sfgpetclinic/repositories/OwnerRepository.java">
           <value>
             <set />

@@ -24,6 +24,11 @@ public class TypeOfPayment extends BaseEntity{
         this.setId(id);
     }
 
+    public TypeOfPayment(Long id, String name) {
+        this.setId(id);
+        this.name = name;
+    }
+
     @Column(name="name")
     private String name;
 
