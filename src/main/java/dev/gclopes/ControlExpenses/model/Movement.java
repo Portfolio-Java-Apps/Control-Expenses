@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 
@@ -32,12 +33,12 @@ public class Movement extends BaseEntity{
     private Source source;
 
     @Column(name="Date")
-    private Date date;
+    private Date date=new Date();
 
     @Column(name="TotalAmount")
-    private Double totalAmount;
+    private Double totalAmount=0.00;
     @Column(name="Discount")
-    private Double discount;
+    private Double discount=0.00;
 
     @ManyToOne
     @JoinColumn(name = "source")
@@ -57,6 +58,7 @@ public class Movement extends BaseEntity{
         this.type = type;
     }
 
+    @Temporal(TemporalType.DATE)
     public Date getDate() {
         return date;
     }
@@ -64,6 +66,7 @@ public class Movement extends BaseEntity{
     public void setDate(Date date) {
         this.date = date;
     }
+
 
     public Double getTotalAmount() {
         return totalAmount;
@@ -81,6 +84,11 @@ public class Movement extends BaseEntity{
         this.discount = discount;
     }
 
+    public int getMonth(){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal.get(Calendar.MONTH);
+    }
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Movement{");

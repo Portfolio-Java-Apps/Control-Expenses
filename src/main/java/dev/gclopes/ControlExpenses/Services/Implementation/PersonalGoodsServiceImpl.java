@@ -3,10 +3,12 @@ package dev.gclopes.ControlExpenses.Services.Implementation;
 import dev.gclopes.ControlExpenses.Services.PersonalGoodsService;
 import dev.gclopes.ControlExpenses.model.PersonalGoods;
 import dev.gclopes.ControlExpenses.repositories.PersonalGoodsRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Service("PersonalGoodsService")
 public class PersonalGoodsServiceImpl implements PersonalGoodsService {
     private final PersonalGoodsRepository personalGoodsRepository;
 
