@@ -1,18 +1,19 @@
 package dev.gclopes.ControlExpenses.model;
 
 import dev.gclopes.ControlExpenses.enumType.Type;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 
 
 @Entity(name = "movement")
 @Table(name = "movement")
-@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
@@ -30,15 +31,20 @@ public class Movement extends BaseEntity{
     @Column(name="Type")
     private Type type;
 
+    public Movement() {
+        this.totalAmount=0.00;
+        this.discount=0.00;
+    }
+
     private Source source;
 
     @Column(name="Date")
     private Date date=new Date();
 
     @Column(name="TotalAmount")
-    private Double totalAmount=0.00;
+    private Double totalAmount;
     @Column(name="Discount")
-    private Double discount=0.00;
+    private Double discount;
 
     @ManyToOne
     @JoinColumn(name = "source")
@@ -84,11 +90,6 @@ public class Movement extends BaseEntity{
         this.discount = discount;
     }
 
-    public int getMonth(){
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        return cal.get(Calendar.MONTH);
-    }
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Movement{");

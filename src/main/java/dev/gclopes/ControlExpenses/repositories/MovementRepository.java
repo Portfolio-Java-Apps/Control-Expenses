@@ -14,17 +14,18 @@ import java.util.Set;
 public interface MovementRepository extends CrudRepository<Movement, Long> {
     Set<Movement> findByType(Type Type);
     Set<Movement> findByDate(Date date);
-    @Query(value="SELECT SUM(total_amount) FROM movement WHERE date = :dayToCheck")
+
+    @Query(value="SELECT SUM(m.totalAmount) FROM movement m WHERE m.date = :dayToCheck")
     Double getTotalAmountByDate(@Param("dayToCheck") Date date);
-    @Query(value="SELECT SUM(m.total_amount) FROM movement m WHERE month(m.date) = :monthToCheck")
+    @Query(value="SELECT SUM(m.totalAmount) FROM movement m WHERE month(m.date) = :monthToCheck")
     Double getTotalAmountByMonth(@Param("monthToCheck") Integer month);
-    @Query(value="SELECT SUM(m.total_amount) FROM movement m WHERE month(m.date) = :yearToCheck")
+    @Query(value="SELECT SUM(m.totalAmount) FROM movement m WHERE year(m.date) = :yearToCheck")
     Double getTotalAmountByYear(@Param("yearToCheck") Integer year);
-    @Query(value="SELECT SUM(discount) FROM movement WHERE date = :dayToCheck")
+    @Query(value="SELECT SUM(m.discount) FROM movement m WHERE m.date = :dayToCheck")
     Double getTotalDiscountByDate(@Param("dayToCheck") Date date);
     @Query(value="SELECT SUM(m.discount) FROM movement m WHERE month(m.date) = :monthToCheck")
     Double getTotalDiscountByMonth(@Param("monthToCheck") Integer month);
-    @Query(value="SELECT SUM(m.discount) FROM movement m WHERE month(m.date) = :yearToCheck")
+    @Query(value="SELECT SUM(m.discount) FROM movement m WHERE year(m.date) = :yearToCheck")
     Double getTotalDiscountByYear(@Param("yearToCheck") Integer year);
 
 }

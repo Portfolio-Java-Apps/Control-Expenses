@@ -1,11 +1,7 @@
 package dev.gclopes.ControlExpenses;
 
-import dev.gclopes.ControlExpenses.Services.MiscExpenseService;
-import dev.gclopes.ControlExpenses.Services.SourceService;
-import dev.gclopes.ControlExpenses.Services.TypeOfPaymentService;
-import dev.gclopes.ControlExpenses.repositories.MiscExpenseRepository;
-import dev.gclopes.ControlExpenses.repositories.SourceRepository;
-import dev.gclopes.ControlExpenses.repositories.TypeOfPaymentRepository;
+import dev.gclopes.ControlExpenses.Services.*;
+import dev.gclopes.ControlExpenses.repositories.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,11 +17,18 @@ class ControlExpensesApplicationTests {
 
 	@Autowired
 	private SourceRepository sourceRepository;
+
 	@Autowired
 	private MiscExpenseRepository miscExpenseRepository;
 
 	@Autowired
 	private TypeOfPaymentRepository typeOfPaymentRepository;
+
+	@Autowired
+	private PersonalGoodsRepository personalGoodsRepository;
+
+	@Autowired
+	private MovementRepository movementRepository;
 
 	@Autowired
 	private SourceService sourceService;
@@ -36,11 +39,19 @@ class ControlExpensesApplicationTests {
 	@Autowired
 	private TypeOfPaymentService typeOfPaymentService;
 
+	@Autowired
+	private PersonalGoodsService personalGoodsService;
+
+	@Autowired
+	private MovementService movementService;
+
 	@Test
 	void contextLoads() {
 		assertNotNull(sourceService);
 		assertNotNull(typeOfPaymentService);
 		assertNotNull(miscExpenseService);
+		assertNotNull(personalGoodsService);
+		assertNotNull(movementService);
 	}
 
 }

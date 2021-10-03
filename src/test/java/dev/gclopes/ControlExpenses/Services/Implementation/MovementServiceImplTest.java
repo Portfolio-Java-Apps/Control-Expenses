@@ -247,7 +247,7 @@ class MovementServiceImplTest {
                 .mapToDouble(Movement::getDiscount)
                 .sum();
         when(movementRepository.getTotalDiscountByDate(dateToSearch)).thenReturn(sum);
-        //assertNotEquals(0, movementService.getTotalDiscountByDate(dateToSearch));
+        assertNotEquals(0, movementService.getTotalDiscountByDate(dateToSearch));
         verify(movementRepository, times(1)).getTotalDiscountByDate(dateToSearch);
     }
 
@@ -259,7 +259,7 @@ class MovementServiceImplTest {
                 .mapToDouble(Movement::getDiscount)
                 .sum();
         when(movementRepository.getTotalDiscountByMonth(month.ordinal())).thenReturn(sum);
-        //assertNotEquals(0, movementService.getTotalDiscountByMonth(month.ordinal()));
+        assertNotEquals(0, movementService.getTotalDiscountByMonth(month.ordinal()));
         verify(movementRepository, times(1)).getTotalDiscountByMonth(month.ordinal());
     }
 
@@ -271,7 +271,7 @@ class MovementServiceImplTest {
                 .mapToDouble(Movement::getDiscount)
                 .sum();
         when(movementRepository.getTotalDiscountByYear(year)).thenReturn(sum);
-        //assertNotEquals(0, movementService.getTotalDiscountByYear(year));
+        assertNotEquals(0, movementService.getTotalDiscountByYear(year));
         verify(movementRepository, times(1)).getTotalDiscountByYear(year);
     }
 }
