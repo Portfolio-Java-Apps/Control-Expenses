@@ -143,6 +143,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/dev/gclopes/ControlExpenses/Services/Implementation/MovMiscExpenseServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/dev/gclopes/ControlExpenses/Services/Implementation/MovementServiceImpl.java">
           <value>
             <set />
