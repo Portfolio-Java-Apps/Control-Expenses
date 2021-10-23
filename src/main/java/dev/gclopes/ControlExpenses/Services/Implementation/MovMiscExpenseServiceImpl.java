@@ -39,17 +39,22 @@ public class MovMiscExpenseServiceImpl implements MovMiscExpenseService {
 
     @Override
     public void deleteById(Long aLong) {
-        movMiscExpenseRepository.deleteById(aLong);
+
+    }
+
+
+    public void deleteByMovementIdAndMiscExpenseId(Long movementId, Long miscExpenseId) {
+        movMiscExpenseRepository.deleteByMovementIdAndMiscExpenseId(movementId, miscExpenseId);
     }
 
     @Override
-    public Set<MovMiscExpense> findAllByIdmovementId(Long id) {
-        return movMiscExpenseRepository.findAllByIdmovementId(id);
+    public Set<MovMiscExpense> findAllByIdMovementId(Long id) {
+        return movMiscExpenseRepository.findAllByIdMovementId(id);
     }
 
     @Override
-    public Set<MovMiscExpense> findAllByIdmiscExpenseId(Long id) {
-        return movMiscExpenseRepository.findAllByIdmiscExpenseId(id);
+    public Set<MovMiscExpense> findAllByIdMiscExpenseId(Long id) {
+        return movMiscExpenseRepository.findAllByIdMiscExpenseId(id);
     }
 
     @Override

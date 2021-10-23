@@ -19,14 +19,21 @@ import java.util.Date;
 @Setter
 @Builder
 public class Movement extends BaseEntity{
+    public Movement(Long id)
+    {
+        super.setId(id);
+    }
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Override
+
+
     public Long getId() {
         return super.getId();
     }
-    public void SetId(Long id){
-        this.setId(id);
+    public void setId(Long id){
+        super.setId(id);
     }
     @Column(name="Type")
     private Type type;

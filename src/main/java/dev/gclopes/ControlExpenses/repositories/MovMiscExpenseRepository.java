@@ -10,10 +10,12 @@ import java.util.Set;
 
 @Repository
 public interface MovMiscExpenseRepository extends CrudRepository<MovMiscExpense, Long> {
-    Set<MovMiscExpense> findAllByIdmovementId(Long id);
-    Set<MovMiscExpense> findAllByIdmiscExpenseId(Long id);
+    Set<MovMiscExpense> findAllByIdMovementId(Long id);
+    Set<MovMiscExpense> findAllByIdMiscExpenseId(Long id);
     @Query(value="SELECT SUM(m.Amount) FROM mov_misc_expense m WHERE m.misc_expense_id = :id")
     Double getTotalAmountByMovement(@Param("id") Long id);
     @Query(value="SELECT SUM(m.Amount) FROM mov_misc_expense m WHERE m.movement_id = :id")
     Double getTotalAmountByMiscExpense(@Param("id") Long id);
+
+    void deleteByMovementIdAndMiscExpenseId(Long movementId, Long miscExpenseId);
 }
