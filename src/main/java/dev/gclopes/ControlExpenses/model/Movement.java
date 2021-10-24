@@ -107,8 +107,9 @@ public class Movement extends BaseEntity{
             sb.append(", Source Desc=").append(source.getName());
         }
         sb.append(", date=").append(formatter.format(date));
-        sb.append(", totalAmount=").append(totalAmount);
-        sb.append(", discount=").append(discount);
+
+        sb.append(", totalAmount=").append(String.format("%.02f",totalAmount));
+        sb.append(", discount=").append(String.format("%.02f",discount));
         if(typeOfPayment!=null) {
             sb.append(", Type of Payment Id=").append(typeOfPayment.getId());
             sb.append(", Type of Payment=").append(typeOfPayment.getName());

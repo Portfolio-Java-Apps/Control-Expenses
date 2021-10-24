@@ -39,4 +39,22 @@ public class MovMiscExpenseID implements Serializable {
                 ", miscExpenseId=" + miscExpenseId +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MovMiscExpenseID that = (MovMiscExpenseID) o;
+
+        if (!movementId.equals(that.movementId)) return false;
+        return miscExpenseId.equals(that.miscExpenseId);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = movementId.hashCode();
+        result = 31 * result + miscExpenseId.hashCode();
+        return result;
+    }
 }

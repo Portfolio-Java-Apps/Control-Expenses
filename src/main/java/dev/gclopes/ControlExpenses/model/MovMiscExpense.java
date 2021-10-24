@@ -67,6 +67,12 @@ public class MovMiscExpense {
         this.miscExpense = miscExpense;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "MovMiscExpense{" + "movMiscExpenseID=" + movMiscExpenseID +
+                ", movement=" + movement +
+                ", miscExpense=" + miscExpense +
+                ", amount=" + String.format("%.02f",amount) +
+                '}';
+    }
 }

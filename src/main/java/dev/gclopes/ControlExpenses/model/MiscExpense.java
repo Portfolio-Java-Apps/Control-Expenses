@@ -52,8 +52,10 @@ public class MiscExpense extends BaseEntity {
         this.name = name;
     }
 
-
-
-
-
+    @Override
+    public String toString() {
+        return "MiscExpense{" + "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
