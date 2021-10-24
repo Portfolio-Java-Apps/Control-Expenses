@@ -11,7 +11,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.*;
 
-import static java.lang.Math.random;
 import static java.lang.Math.round;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -24,14 +23,15 @@ class MovMiscExpenseServiceImplTest {
     private final long nrOfRecordsMov = 100L;
     private final long nrOfRecordsMisc = 12L;
     Set<MovMiscExpense> movMiscExpenses = new HashSet<>();
-
+    MovMiscExpenseID movMiscExpenseIDSelected;
     @BeforeEach
     void setUp() {
         movMiscExpenseService = new MovMiscExpenseServiceImpl(movMiscExpenseRepository);
-        Random rand = new Random();
+
 
         for(long indexMov = 1; indexMov <= nrOfRecordsMov; indexMov++)
         {
+            Random rand = new Random();
             Movement movement =  Movement
                     .builder()
                     .type(Type.DEBT)
@@ -40,15 +40,22 @@ class MovMiscExpenseServiceImplTest {
                     .typeOfPayment(new TypeOfPayment(0L, "TypeOfPaymentTest"))
                     .build();
             movement.setId(indexMov);
-            MovMiscExpense movMiscExpense = new MovMiscExpense(indexMov, 1L);
+
+            MovMiscExpense movMiscExpense = new MovMiscExpense(new MovMiscExpenseID(indexMov, 1L));
             MiscExpense miscExpense = new MiscExpense(1L, "Testing!");
             movMiscExpense.setMiscExpense(miscExpense);
             movMiscExpense.setMovement(movement);
             Double TotalAmount = (double) round((rand.nextInt(100) + rand.nextDouble()) *100)/100;
             movMiscExpense.setAmount(TotalAmount);
+
+            if((movMiscExpenseIDSelected==null && rand.nextBoolean()) ||
+                    (movMiscExpenseIDSelected==null && indexMov==nrOfRecordsMov) )
+            {
+                movMiscExpenseIDSelected = movMiscExpense.getMovMiscExpenseID();
+            }
             movMiscExpenses.add(movMiscExpense);
         }
-
+        System.out.println(movMiscExpenseIDSelected.toString() );
     }
 
     @Test
@@ -60,18 +67,16 @@ class MovMiscExpenseServiceImplTest {
 
     @Test
     void findById() {
-        assertNull(movMiscExpenseService.findById(0L));
+        assertNull(movMiscExpenseService.findById(1L));
     }
 
     MovMiscExpense getOneMovMiscExpense()
     {
         MovMiscExpense movMiscExpense;
         do {
-            long id = (long) (random() * (nrOfRecordsMov - 1) + 1);
-            long id2 = 1L;
-            MovMiscExpenseID movMiscExpenseID = new MovMiscExpenseID(id, id2);
+
             movMiscExpense = movMiscExpenses.stream()
-                    .filter(y -> Objects.equals(y.getMovMiscExpenseID(), movMiscExpenseID))
+                    .filter(y -> Objects.equals(y.getMovMiscExpenseID(), movMiscExpenseIDSelected))
                     .findFirst()
                     .orElse(null);
         }
@@ -141,30 +146,34 @@ class MovMiscExpenseServiceImplTest {
     }
 
     @Test
-    void findAllByIdMovementId() {
+    void findAllByMovementId() {
         Set<MovMiscExpense> movMiscExpenses = new HashSet<>();
-        long id = (long) (random() * (nrOfRecordsMov -1) + 1);
+        long id = movMiscExpenseIDSelected.getMovementId();
+        MovMiscExpenseID movMiscExpenseID = new MovMiscExpenseID(35L, 1L);
         this.movMiscExpenses.stream()
-                .filter(x-> Objects.equals(x.getMovMiscExpenseID().getMovementId(), id)).forEach(movMiscExpenses::add);
-        when(movMiscExpenseRepository.findAllByIdMovementId(id)).thenReturn(movMiscExpenses);
-        movMiscExpenseService.findAllByIdMovementId(id);
-        verify(movMiscExpenseRepository, times(1)).findAllByIdMovementId(id);
+                .filter(x-> Objects.equals(x.getMovMiscExpenseID(), movMiscExpenseID)).forEach(movMiscExpenses::add);
+        when(movMiscExpenseRepository.findAllByMovementId(id)).thenReturn(movMiscExpenses);
+
+        assertNotNull(movMiscExpenseService.findAllByMovementId(id));
+        //verify(movMiscExpenseRepository, times(1)).findAllByIdMovementId(id);
     }
 
     @Test
-    void findAllByIdMiscExpenseId() {
+    void findAllByMiscExpenseId() {
         Set<MovMiscExpense> movMiscExpenses = new HashSet<>();
-        long id = (long) (random() * (nrOfRecordsMisc -1) + 1);
+        Long id = movMiscExpenseIDSelected.getMovementId();
         this.movMiscExpenses.stream()
-                .filter(x-> Objects.equals(x.getMovMiscExpenseID().getMiscExpenseId(), id)).forEach(movMiscExpenses::add);
-        when(movMiscExpenseRepository.findAllByIdMiscExpenseId(id)).thenReturn(movMiscExpenses);
-        movMiscExpenseService.findAllByIdMiscExpenseId(id);
-        verify(movMiscExpenseRepository, times(1)).findAllByIdMiscExpenseId(id);
+                .filter(x-> Objects.equals(x.getMovMiscExpenseID().getMiscExpenseId(), 1L))
+                .forEach(movMiscExpenses::add);
+        when(movMiscExpenseRepository.findAllByMiscExpenseId(id)).thenReturn(movMiscExpenses);
+
+        assertNotNull(movMiscExpenseService.findAllByMiscExpenseId(id));
+//        verify(movMiscExpenseRepository, times(1)).findAllByIdMiscExpenseId(id);
     }
 
     @Test
     void getTotalAmountByMovement() {
-        long id = (long) (random() * (nrOfRecordsMov -1) + 1);
+        long id = movMiscExpenseIDSelected.getMovementId();
         Double sum = movMiscExpenses.stream()
                 .filter(x-> Objects.equals(x.getMovMiscExpenseID().getMovementId(), id))
                 .mapToDouble(MovMiscExpense::getAmount)
@@ -176,7 +185,7 @@ class MovMiscExpenseServiceImplTest {
 
     @Test
     void getTotalAmountByMiscExpense() {
-        long id = (long) (random() * (nrOfRecordsMisc -1) + 1);
+        Long id = movMiscExpenseIDSelected.getMiscExpenseId();
         Double sum = movMiscExpenses.stream()
                 .filter(x-> Objects.equals(x.getMovMiscExpenseID().getMiscExpenseId(), id))
                 .mapToDouble(MovMiscExpense::getAmount)

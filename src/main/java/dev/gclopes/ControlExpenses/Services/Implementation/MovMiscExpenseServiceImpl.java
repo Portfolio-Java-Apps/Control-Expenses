@@ -5,6 +5,7 @@ import dev.gclopes.ControlExpenses.model.MovMiscExpense;
 import dev.gclopes.ControlExpenses.repositories.MovMiscExpenseRepository;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.NotSupportedException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -38,23 +39,22 @@ public class MovMiscExpenseServiceImpl implements MovMiscExpenseService {
     }
 
     @Override
-    public void deleteById(Long aLong) {
-
+    public void deleteById(Long aLong) throws Exception {
+        throw new NotSupportedException();
     }
-
 
     public void deleteByMovementIdAndMiscExpenseId(Long movementId, Long miscExpenseId) {
         movMiscExpenseRepository.deleteByMovementIdAndMiscExpenseId(movementId, miscExpenseId);
     }
 
     @Override
-    public Set<MovMiscExpense> findAllByIdMovementId(Long id) {
-        return movMiscExpenseRepository.findAllByIdMovementId(id);
+    public Set<MovMiscExpense> findAllByMovementId(Long id) {
+        return movMiscExpenseRepository.findAllByMovementId(id);
     }
 
     @Override
-    public Set<MovMiscExpense> findAllByIdMiscExpenseId(Long id) {
-        return movMiscExpenseRepository.findAllByIdMiscExpenseId(id);
+    public Set<MovMiscExpense> findAllByMiscExpenseId(Long id) {
+        return movMiscExpenseRepository.findAllByMiscExpenseId(id);
     }
 
     @Override

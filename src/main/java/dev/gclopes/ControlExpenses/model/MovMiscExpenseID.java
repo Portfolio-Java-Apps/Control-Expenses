@@ -32,4 +32,11 @@ public class MovMiscExpenseID implements Serializable {
     public void setMiscExpenseId(Long miscExpenseId) {
         this.miscExpenseId = miscExpenseId;
     }
+
+    @Override
+    public String toString() {
+        return "MovMiscExpenseID{" + "movementId=" + movementId +
+                ", miscExpenseId=" + miscExpenseId +
+                '}';
+    }
 }

@@ -12,7 +12,10 @@ import javax.persistence.*;
 public class MovMiscExpense {
     @EmbeddedId
     private MovMiscExpenseID movMiscExpenseID;
-
+    public MovMiscExpense(MovMiscExpenseID movMiscExpenseID)
+    {
+        this.movMiscExpenseID = movMiscExpenseID;
+    }
     public MovMiscExpense(Long movementId, Long miscExpenseId)
     {
         movMiscExpenseID = new MovMiscExpenseID(movementId, miscExpenseId);
