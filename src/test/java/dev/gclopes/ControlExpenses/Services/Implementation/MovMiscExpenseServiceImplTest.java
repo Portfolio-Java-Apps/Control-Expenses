@@ -23,6 +23,7 @@ class MovMiscExpenseServiceImplTest {
     Set<MovMiscExpense> movMiscExpenses = new HashSet<>();
     MovMiscExpenseID movMiscExpenseIDSelected;
     private final String[] ArrStrDesc = {"Saúde", "Cartão Crédito", "Contrib/Impostos", "Condomínios", "Serviços", "Viatura", "Outros", "Atm"};
+
     @BeforeEach
     void setUp() {
         movMiscExpenseService = new MovMiscExpenseServiceImpl(movMiscExpenseRepository);

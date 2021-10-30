@@ -11,8 +11,15 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class MovPersonalGoods {
     @EmbeddedId
-    private MovPersonalGoodsID movPersonalGoodsID = new MovPersonalGoodsID();
-
+    private MovPersonalGoodsID movPersonalGoodsID;
+    public MovPersonalGoods(MovPersonalGoodsID movPersonalGoodsID)
+    {
+        this.movPersonalGoodsID = movPersonalGoodsID;
+    }
+    public MovPersonalGoods(Long movementId, Long personalGoodsID)
+    {
+        movPersonalGoodsID = new MovPersonalGoodsID(movementId, personalGoodsID);
+    }
     @ManyToOne
     @MapsId("movementId")
     @JoinColumn(name = "movement_id")
@@ -25,6 +32,8 @@ public class MovPersonalGoods {
 
     @Column(name = "Amount")
     private Double amount;
+
+
 
     public MovPersonalGoodsID getMovPersonalGoodsID() {
         return movPersonalGoodsID;
@@ -58,6 +67,12 @@ public class MovPersonalGoods {
         this.amount = amount;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "MovPersonalGoods{" + "movPersonalGoodsID=" + movPersonalGoodsID +
+                ", movement=" + movement +
+                ", personalGoods=" + personalGoods +
+                ", amount=" + amount +
+                '}';
+    }
 }
