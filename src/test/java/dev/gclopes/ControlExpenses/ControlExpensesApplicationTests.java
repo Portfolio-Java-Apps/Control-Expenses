@@ -37,6 +37,9 @@ class ControlExpensesApplicationTests {
 	private MiscExpenseService miscExpenseService;
 
 	@Autowired
+	private MovMiscExpenseService movMiscExpenseService;
+
+	@Autowired
 	private TypeOfPaymentService typeOfPaymentService;
 
 	@Autowired
@@ -45,12 +48,17 @@ class ControlExpensesApplicationTests {
 	@Autowired
 	private MovementService movementService;
 
+	@Autowired
+	private MovPersonalGoodsService movPersonalGoodsService;
+
 	@Test
 	void contextLoads() {
 		assertNotNull(sourceService);
 		assertNotNull(typeOfPaymentService);
 		assertNotNull(miscExpenseService);
+		assertNotNull(movMiscExpenseService);
 		assertNotNull(personalGoodsService);
+		assertNotNull(movPersonalGoodsService);
 		assertNotNull(movementService);
 	}
 

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.transaction.NotSupportedException;
 import java.util.*;
 
 import static java.lang.Math.round;
@@ -112,7 +113,10 @@ class MovMiscExpenseServiceImplTest {
 
     @Test
     void findById() {
-        assertNull(movMiscExpenseService.findById(1L));
+        String strMessage = "Cannot insert a miscellaneous expense in a movement using only one id.";
+        NotSupportedException ex = assertThrows(NotSupportedException.class, () ->
+                movMiscExpenseService.findById(1L), strMessage);
+        assertEquals(ex.getMessage(), strMessage);
     }
 
     MovMiscExpense getOneMovMiscExpense()
@@ -198,9 +202,7 @@ class MovMiscExpenseServiceImplTest {
         this.movMiscExpenses.stream()
                 .filter(x-> Objects.equals(x.getMovMiscExpenseID().getMovementId(), id)).forEach(movMiscExpenses::add);
         when(movMiscExpenseRepository.findAllByMovementId(id)).thenReturn(movMiscExpenses);
-
         assertNotNull(movMiscExpenseService.findAllByMovementId(id));
-        //verify(movMiscExpenseRepository, times(1)).findAllByIdMovementId(id);
     }
 
     @Test
@@ -213,7 +215,6 @@ class MovMiscExpenseServiceImplTest {
         when(movMiscExpenseRepository.findAllByMiscExpenseId(id)).thenReturn(movMiscExpenses);
 
         assertNotNull(movMiscExpenseService.findAllByMiscExpenseId(id));
-//        verify(movMiscExpenseRepository, times(1)).findAllByIdMiscExpenseId(id);
     }
 
     @Test
@@ -240,4 +241,12 @@ class MovMiscExpenseServiceImplTest {
         verify(movMiscExpenseRepository, times(1)).getTotalAmountByMiscExpense(id);
     }
 
+    @Test
+    void deleteById() {
+        String strMessage = "Cannot delete a miscellaneous expense in a movement using only one id.";
+        NotSupportedException ex = assertThrows(NotSupportedException.class, () ->
+                        movMiscExpenseService.deleteById(1L)
+        , strMessage);
+        assertEquals(ex.getMessage(), strMessage);
+    }
 }

@@ -24,8 +24,8 @@ public class MovMiscExpenseServiceImpl implements MovMiscExpenseService {
     }
 
     @Override
-    public MovMiscExpense findById(Long aLong) {
-        return null;
+    public MovMiscExpense findById(Long aLong) throws NotSupportedException {
+        throw new NotSupportedException("Cannot insert a miscellaneous expense in a movement using only one id.");
     }
 
     @Override
@@ -39,8 +39,8 @@ public class MovMiscExpenseServiceImpl implements MovMiscExpenseService {
     }
 
     @Override
-    public void deleteById(Long aLong) throws Exception {
-        throw new NotSupportedException();
+    public void deleteById(Long aLong) throws NotSupportedException {
+        throw new NotSupportedException("Cannot delete a miscellaneous expense in a movement using only one id.");
     }
 
     public void deleteByMovementIdAndMiscExpenseId(Long movementId, Long miscExpenseId) {

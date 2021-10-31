@@ -24,8 +24,8 @@ public class MovPersonalGoodsServiceImpl implements MovPersonalGoodsService {
     }
 
     @Override
-    public MovPersonalGoods findById(Long aLong) {
-        return null;
+    public MovPersonalGoods findById(Long aLong) throws NotSupportedException {
+        throw new NotSupportedException("Cannot insert a personal good in a movement using only one id.");
     }
 
     @Override
@@ -39,8 +39,8 @@ public class MovPersonalGoodsServiceImpl implements MovPersonalGoodsService {
     }
 
     @Override
-    public void deleteById(Long aLong) throws Exception {
-        throw new NotSupportedException();
+    public void deleteById(Long aLong) throws NotSupportedException {
+        throw new NotSupportedException("Cannot delete a personal good in a movement using only one id.");
     }
 
     public void deleteByMovementIdAndPersonalGoodsId(Long movementId, Long PersonalGoodsId) {

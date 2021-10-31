@@ -9,6 +9,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.transaction.NotSupportedException;
 import java.util.*;
 
 import static java.lang.Math.round;
@@ -115,7 +116,10 @@ class MovPersonalGoodsServiceImplTest {
 
     @Test
     void findById() {
-        assertNull(movPersonalGoodsService.findById(1L));
+        String strMessage = "Cannot insert a personal good in a movement using only one id.";
+        NotSupportedException ex = assertThrows(NotSupportedException.class, () ->
+                movPersonalGoodsService.findById(1L), strMessage);
+        assertEquals(ex.getMessage(), strMessage);
     }
 
     MovPersonalGoods getOneMovPersonalGoods()
@@ -242,5 +246,13 @@ class MovPersonalGoodsServiceImplTest {
         when(movPersonalGoodsRepository.getTotalAmountByPersonalGoods(id)).thenReturn(sum);
         assertNotEquals(0, movPersonalGoodsService.getTotalAmountByPersonalGoods(id));
         verify(movPersonalGoodsRepository, times(1)).getTotalAmountByPersonalGoods(id);
+    }
+
+    @Test
+    void deleteById() {
+        String strMessage = "Cannot delete a personal good in a movement using only one id.";
+        NotSupportedException ex = assertThrows(NotSupportedException.class, () ->
+                movPersonalGoodsService.deleteById(1L), strMessage);
+        assertEquals(ex.getMessage(), strMessage);
     }
 }
