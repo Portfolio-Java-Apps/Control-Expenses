@@ -13,6 +13,76 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/Control-Expenses-Data/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Control-Expenses-Data/src/main/java/dev/gclopes/ControlExpensesData/Config/CrudServicesConfig.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Control-Expenses-Data/src/test/dev/gclopes/ControlExpenses/ControlExpensesApplicationTests.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Control-Expenses-Data/src/test/dev/gclopes/ControlExpensesData/ControlExpensesApplicationTests.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Control-Expenses-Data/src/test/java/dev/gclopes/ControlExpenses/ControlExpensesApplicationTests.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Control-Expenses-Data/src/test/java/dev/gclopes/ControlExpensesData/ControlExpensesApplicationTests.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Control-Expenses-Data/src/test/java/dev/gclopes/ControlExpensesData/Services/Implementation/MiscExpenseServiceImplTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Control-Expenses-Data/src/test/java/dev/gclopes/ControlExpensesData/Services/Implementation/MovMiscExpenseServiceImplTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Control-Expenses-Data/src/test/java/dev/gclopes/ControlExpensesData/Services/Implementation/MovPersonalGoodsServiceImplTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Control-Expenses-Data/src/test/java/dev/gclopes/ControlExpensesData/Services/Implementation/MovementServiceImplTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Control-Expenses-Data/src/test/java/dev/gclopes/ControlExpensesData/Services/Implementation/PersonalGoodsServiceImplTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Control-Expenses-Data/src/test/java/dev/gclopes/ControlExpensesData/Services/Implementation/SourceServiceImplTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Control-Expenses-Data/src/test/java/dev/gclopes/ControlExpensesData/Services/Implementation/TypeOfPaymentServiceImplTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Control-Expenses-Web/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/pom.xml">
           <value>
             <set />
